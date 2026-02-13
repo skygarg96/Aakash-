@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pagga 💖</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding-top: 100px;
+            text-align: center;
+            font-family: 'Comic Sans MS', cursive;
+            overflow: hidden;
+
+            background: url("us.jpg") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Dark Romantic Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: -1;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: white;
+            text-shadow: 2px 2px 15px #ff4d6d;
+        }
+
+        .buttons {
+            margin-top: 40px;
+            position: relative;
+        }
+
+        button {
+            padding: 15px 35px;
+            font-size: 20px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s;
+        }
+
+        #yes {
+            background-color: #ff4d6d;
+            color: white;
+        }
+
+        #yes:hover {
+            transform: scale(1.1);
+        }
+
+        #no {
+            background-color: #555;
+            color: white;
+            position: absolute;
+        }
+
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 20px;
+            animation: float 5s linear infinite;
+        }
+
+        @keyframes float {
+            from { transform: translateY(100vh); }
+            to { transform: translateY(-10vh); }
+        }
+    </style>
+</head>
+
+<body onclick="playMusic()">
+
+    <div class="overlay"></div>
+
+    <h1>Pagga 💖<br>Will you be my Valentine?</h1>
+
+    <div class="buttons">
+        <button id="yes" onclick="yesClicked()">Yes 💘</button>
+        <button id="no" onmouseover="moveButton()">No 😢</button>
+    </div>
+
+    <!-- Romantic Instrumental Music -->
+    <audio id="bgMusic" loop>
+        <source src="romantic.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const music = document.getElementById("bgMusic");
+
+        function playMusic() {
+            music.play();
+            document.body.onclick = null; // play only once
+        }
+
+        function yesClicked() {
+            document.body.innerHTML = `
+                <div style="margin-top:200px; color:white; text-align:center;">
+                    <h1 style="font-size:3em;">
+                        YAY Pagga 💕<br>
+                        You just made me the happiest person alive!
+                    </h1>
+                    <h2>I love you forever ❤️</h2>
+                </div>
+            `;
+        }
+
+        function moveButton() {
+            const button = document.getElementById("no");
+            const x = Math.random() * 300;
+            const y = Math.random() * 200;
+            button.style.left = x + "px";
+            button.style.top = y + "px";
+        }
+
+        // Floating hearts
+        setInterval(() => {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "💖";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }, 300);
+    </script>
+
+</body>
+</html>
+
+
